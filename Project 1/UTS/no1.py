@@ -1,0 +1,1 @@
+print("Semangan Ujian Tengah Semester Anak Jenderal")
