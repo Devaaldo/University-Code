@@ -1,4 +1,4 @@
-def penjelasan(pesan):
+def penjelasan(pesan): 
     def isi_pesan():
         print(pesan)
     return isi_pesan
