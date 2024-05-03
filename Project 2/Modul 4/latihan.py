@@ -12,10 +12,10 @@ def hasil(a, t):
     c = 1/2*a*t
     print(c)
 
-# hasil(4,2)
+hasil(4,2)
 
-alas = float(input("Masukkan alas : "))
-tinggi = float(input("Masukkan tinggi : "))
+# alas = float(input("Masukkan alas : "))
+# tinggi = float(input("Masukkan tinggi : "))
 
-hasil_luas = hasil(alas, tinggi)
-print(hasil_luas)
+# hasil_luas = hasil(alas, tinggi)
+# print(hasil_luas)
