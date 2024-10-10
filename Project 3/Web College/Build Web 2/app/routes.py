@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, flash, session
 from .models import User
 from . import db, bcrypt
+from flask import current_app as app
 
 auth = Blueprint('auth', __name__)
 
@@ -11,21 +12,16 @@ def login():
         data = request.form
         username = data.get('username')
         password = data.get('password')
-
-        # Validate input
-        if not username or not password:
-            flash('Username and password are required.')
-            return redirect(url_for('auth.login'))
-
+    
         user = User.query.filter_by(username=username).first()
 
         if user and bcrypt.check_password_hash(user.password, password):
             session['user_id'] = user.id
             return redirect(url_for('auth.dashboard'))
-
+        
         flash('Invalid credentials, please try again')
         return redirect(url_for('auth.login'))
-    
+
     # Display login form
     return render_template('login.html')
 
@@ -35,20 +31,13 @@ def register():
     if request.method == 'POST':
         data = request.form
         username = data.get('username')
-        password = data.get('password')
-
-        # Validate input
-        if not username or not password:
-            flash('Username and password are required.')
-            return redirect(url_for('auth.register'))
+        password = bcrypt.generate_password_hash(data.get('password')).decode('utf-8')
 
         if User.query.filter_by(username=username).first():
-            flash('Username already exists.')
+            flash('Username already exists')
             return redirect(url_for('auth.register'))
-
-        # Hash the password before storing
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        new_user = User(username=username, password=hashed_password)
+        
+        new_user = User(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
 
