@@ -18,5 +18,3 @@ def welcome(username):
 if __name__ == '__main__':
     app.run(debug=True)
 
-# What are u looking for?
-# I just wanna do some commit :)
