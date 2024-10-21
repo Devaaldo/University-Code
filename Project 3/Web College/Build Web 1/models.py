@@ -8,3 +8,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.email}')"
+
+# Seperti biasa
+# What are u looking for?
+#There is nothing in here
