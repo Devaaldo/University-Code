@@ -17,3 +17,17 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, username): 
         if username.data in EXISTING_USERNAMES:
             raise ValidationError('Username already exists.')
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Another things for commit 
